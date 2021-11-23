@@ -1,0 +1,89 @@
+{
+    "env": {
+        "browser": true
+    },
+    "extends": [
+        "airbnb",
+        "plugin:jsx-a11y/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [
+              ".js",
+              ".jsx",
+              ".ts",
+              ".tsx"
+            ],
+            "paths": [
+              "src"
+            ]
+          }
+        }
+    },
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "react/jsx-filename-extension": [
+            1,
+            {
+              "extensions": [
+                ".jsx",
+                ".js",
+                ".ts",
+                ".tsx"
+              ]
+            }
+          ],
+        "no-unused-vars": "error",
+        "semi": "off",
+        "no-useless-constructor": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "max-classes-per-file": "off",
+        "import/prefer-default-export": "off",
+        "comma-dangle": "off",
+        "no-array-index-key": "off",
+        "no-non-null-assertion": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "no-underscore-dangle": "off",
+        "class-methods-use-this": "off",
+        "react/no-array-index-key": "warn",
+        "import/no-extraneous-dependencies": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "import/extensions": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "react/button-has-type": "warn",
+        "react/require-default-props": [1, { "forbidDefaultForRequired": false, "ignoreFunctionalComponents": true }],
+        "react/prop-types": "off",
+        "no-unused-expressions": "off",
+        "no-shadow": "off",
+        "import/no-named-as-default-member": "off",
+        "consistent-return": "off",
+        "no-param-reassign": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "import/named": "off",
+        "import/no-cycle": "off",
+        "import/no-named-as-default": "off",
+        "jsx-a11y/no-onchange": "off",
+        "no-use-before-define": "off",
+        "no-return-assign": "off",
+        "react/jsx-props-no-spreading": "off"
+    }
+}
