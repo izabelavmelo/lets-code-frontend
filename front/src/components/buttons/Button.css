@@ -1,0 +1,24 @@
+.button {
+  background: rgb(245, 208, 31);
+  border: 0px solid rgb(247, 212, 47);
+  border-radius: 5rem;
+  min-width: 44px;
+  height: 44px;
+  padding: 0.5rem 1rem;
+  color: black;
+  font-size: 16px;
+} 
+
+.button:hover:enabled {
+  background: rgb(237, 240, 81);
+}
+
+.button:focus-visible:enabled {
+  background-color: rgb(0, 56, 129);
+  color: white;
+}
+
+.disabled {
+  background-color: #DADBE1;
+  color: rgba(0, 0, 0, 0.87);
+}

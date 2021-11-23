@@ -6,11 +6,14 @@ import Column from './components/Column';
 import { ColumnType } from './domain/Board';
 import { Loader } from './components/Loader';
 import { Card } from './domain/Card';
+import { CircleButton } from './components/buttons/CircleButton';
+import { AddNewCardModal } from './components/AddNewCardModal';
 
 function App() {
   const apiBoardService = new ApiBoardService()
   const [token, setToken] = useState<string>()
   const [cards, setCards] = useState<Card[]>()
+  const [showAddNewCardModal, setShowAddNewCardModal] = useState(false)
   useEffect(() => {
     apiBoardService.login('letscode', 'lets@123').then((response) => {
       setToken(response.token)
@@ -25,6 +28,18 @@ function App() {
     }
   }, [token])
 
+  const onShowAddNewCardModal = () => {
+    setShowAddNewCardModal(true)
+  }
+
+  const onHideAddNewCardModal = () => {
+    setShowAddNewCardModal(false)
+  }
+
+  const onSendNewCard = (card: Card) => {
+    console.log(card)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -32,6 +47,7 @@ function App() {
         <p className="header-text">
           Quadro Kanban - Lets Code
         </p>
+        <CircleButton label="+" onClick={onShowAddNewCardModal} />
       </header>
       <body>
         <div className="App-body">
@@ -43,6 +59,9 @@ function App() {
             </>
           ) : (
             <Loader />
+          )}
+          {showAddNewCardModal && (
+            <AddNewCardModal onClose={onHideAddNewCardModal} onSend={onSendNewCard} />
           )}
         </div>
       </body>
