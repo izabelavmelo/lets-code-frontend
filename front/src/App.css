@@ -23,6 +23,7 @@
   flex: 1;
   height: 90vh;
   padding: 16px;
+  flex-direction: column;
 }
 
 .header-text {
@@ -34,8 +35,9 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media screen and (min-width: 480px) {
@@ -49,5 +51,9 @@
 
   .header-text {
     font-size: 18px;
+  }
+
+  .App-body {
+    flex-direction: row;
   }
 }
