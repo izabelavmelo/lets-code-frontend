@@ -16,13 +16,13 @@ function App() {
   const [showAddNewCardModal, setShowAddNewCardModal] = useState(false)
   useEffect(() => {
     apiBoardService.login('letscode', 'lets@123').then((response) => {
-      setToken(response.token)
+      setToken(response.token.replaceAll('"', ''))
     })
   }, [])
 
   useEffect(() => {
     if (token) {
-      apiBoardService.getCards(token.replaceAll('"', '')).then((response) => {
+      apiBoardService.getCards(token).then((response) => {
         setCards(response.cards)
       })
     }
@@ -37,8 +37,11 @@ function App() {
   }
 
   const onSendNewCard = (card: Card) => {
-    console.log(card)
+    if (token) {
+      apiBoardService.addNewCard(token, card)
+    }
   }
+  console.log(cards)
 
   return (
     <div className="App">

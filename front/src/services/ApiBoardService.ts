@@ -1,4 +1,10 @@
-import { BoardService, FetchCardsResponse, LoginResponse } from '../domain/ApiBoard'
+import {
+  AddNewCardResponse,
+  BoardService,
+  FetchCardsResponse,
+  LoginResponse
+} from '../domain/ApiBoard'
+import { Card } from '../domain/Card'
 import { api } from './api'
 
 export default class ApiBoardService implements BoardService {
@@ -22,6 +28,17 @@ export default class ApiBoardService implements BoardService {
     })
     return {
       cards: JSON.parse(response.body)
+    }
+  }
+
+  async addNewCard(token: string, newCard: Card): Promise<AddNewCardResponse> {
+    const response = await api.post({
+      url: 'cards/',
+      token,
+      payload: { ...newCard }
+    })
+    return {
+      card: JSON.parse(response.body)
     }
   }
 }
