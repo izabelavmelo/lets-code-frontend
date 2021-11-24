@@ -12,6 +12,10 @@ export interface AddNewCardResponse {
   card: Card;
 }
 
+export interface UpdateCardResponse {
+  card: Card;
+}
+
 export interface RemoveCardResponse {
   cards: Card[];
 }
@@ -21,4 +25,5 @@ export interface BoardService {
   getCards(token: string): Promise<FetchCardsResponse>;
   addNewCard(token: string, newCard: NewCard): Promise<AddNewCardResponse>;
   removeCard(token: string, id: string): Promise<RemoveCardResponse>;
+  updateCard(token: string, newCard: Card): Promise<UpdateCardResponse>
 }

@@ -9,12 +9,15 @@ interface Props {
   cards: Card[];
   // eslint-disable-next-line no-unused-vars
   onRemoveCard: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  onUpdateCard: (newCard: Card) => void;
 }
 
 export default function Column({
   type,
   cards,
-  onRemoveCard
+  onRemoveCard,
+  onUpdateCard
 }: Props) {
   return (
     <div className="column-container">
@@ -23,6 +26,7 @@ export default function Column({
         <CardViewOrEdit
           card={card}
           onRemoveCard={onRemoveCard}
+          onUpdateCard={onUpdateCard}
         />
       ))}
     </div>

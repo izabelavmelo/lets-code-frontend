@@ -14,15 +14,34 @@ interface Props {
   card: Card;
   // eslint-disable-next-line no-unused-vars
   onRemoveCard: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  onUpdateCard: (newCard: Card) => void;
 }
 
 export default function CardViewOrEdit({
   card,
-  onRemoveCard
+  onRemoveCard,
+  onUpdateCard
 }: Props) {
   const onRemoveCardAction = () => {
     onRemoveCard(card.id)
   }
+  const moveToLeft = () => {
+    if (card.lista === ColumnType.DOING) {
+      onUpdateCard({ ...card, lista: ColumnType.TODO })
+    } else if (card.lista === ColumnType.DONE) {
+      onUpdateCard({ ...card, lista: ColumnType.DOING })
+    }
+  }
+
+  const moveToRight = () => {
+    if (card.lista === ColumnType.TODO) {
+      onUpdateCard({ ...card, lista: ColumnType.DOING })
+    } else if (card.lista === ColumnType.DOING) {
+      onUpdateCard({ ...card, lista: ColumnType.DONE })
+    }
+  }
+
   return (
     <div className="card-container">
       <div className="card-header">
@@ -34,7 +53,7 @@ export default function CardViewOrEdit({
         <div className="buttons-container">
           <CircleButton
             label={<AiFillCaretLeft />}
-            onClick={() => null}
+            onClick={moveToLeft}
             disabled={card.lista === ColumnType.TODO}
           />
           <CircleButton
@@ -43,7 +62,7 @@ export default function CardViewOrEdit({
           />
           <CircleButton
             label={<AiFillCaretRight />}
-            onClick={() => null}
+            onClick={moveToRight}
             disabled={card.lista === ColumnType.DONE}
           />
         </div>

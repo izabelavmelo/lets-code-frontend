@@ -51,6 +51,15 @@ function App() {
     }
   }
 
+  const onUpdateCard = (newCard: Card) => {
+    if (token) {
+      apiBoardService.updateCard(token, newCard).then((response) => {
+        const newCards = cards?.filter((card) => card.id !== response.card.id)
+        setCards([...(newCards || []), response.card])
+      })
+    }
+  }
+
   const memoizedCardsTodo = useMemo(
     () => (cards || []).filter((card) => card.lista === ColumnType.TODO),
     [cards]
@@ -83,16 +92,19 @@ function App() {
                 type={ColumnType.TODO}
                 cards={memoizedCardsTodo}
                 onRemoveCard={onRemoveCard}
+                onUpdateCard={onUpdateCard}
               />
               <Column
                 type={ColumnType.DOING}
                 cards={memoizedCardsDoing}
                 onRemoveCard={onRemoveCard}
+                onUpdateCard={onUpdateCard}
               />
               <Column
                 type={ColumnType.DONE}
                 cards={memoizedCardsDone}
                 onRemoveCard={onRemoveCard}
+                onUpdateCard={onUpdateCard}
               />
             </>
           ) : (
