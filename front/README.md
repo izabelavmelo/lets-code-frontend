@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# Desafio Técnico Let's Code - Frontend - Izabela Melo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Link para descrição do desafio: https://gitlab.com/gabriel.militello1/desafio-tecnico-frontend
 
-## Available Scripts
+## Comandos importantes
 
-In the project directory, you can run:
+1) Para instalar o ambiente:
 
-### `yarn start`
+```
+cd front
+yarn install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2) Para rodar o projeto:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+yarn start
+```
 
-### `yarn test`
+3) Para rodar os testes do projeto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+yarn test
+```
 
-### `yarn build`
+4) Para rodar o lint do projeto:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn lint
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Decisões importantes do projeto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Foi considerado como "uma única tela" = uma única rota. Por esse motivo, preferi fazer a feature de adicionar novo card com um modal
+* Para permitir uma acessibilidade mínima, adicionei o FocusLock (https://www.npmjs.com/package/react-focus-lock). Isso faz com que o foco seja levado para o modal e que nada por baixo do modal consiga ficar em foco. Dessa forma, leitores de tela conseguirão passar o conteúdo corretamente.
+* Os botões tem focus, hover e disabled com visualizações diferentes para permitir uma melhor acessibilidade. Os botões também possuem o aria-label, já que podem ser apenas ícones.
+* Foi adicionado o react-icons
+* Foi adicionado o eslint
+* O código foi dividido entre components (componentes visuais que podem ser reutilizados), services (como se dá a comunicação com backend), domain (tipos que foram usados em todo o projeto), assets (imagens utilizadas) e test (pasta para testes)
+* As telas estão responsivas
 
-### `yarn eject`
+## Screenshots do resultado final
+* Desktop
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="./public/screenshots/tela-vazia-desk.png" width="50%" /><img src="./public/screenshots/add-card-desk.png" width="50%" />
+<img src="./public/screenshots/one-card-view-desk.png" width="50%" /><img src="./public/screenshots/one-card-edit-desk.png" width="50%" />
+<img src="./public/screenshots/two-cards-view-desk.png" width="50%" /><img src="./public/screenshots/two-card-two-columns-desk.png" width="50%" />
+<img src="./public/screenshots/two-cards-two-columns-2-desk.png" width="50%" /><img src="./public/screenshots/two-cards-view-and-edit-desk.png" width="50%" />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Mobile
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="./public/screenshots/tela-vazia-mobile.png" width="33%" /><img src="./public/screenshots/add-card-mobile.png" width="33%" /><img src="./public/screenshots/one-card-view-mobile.png" width="33%" />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
