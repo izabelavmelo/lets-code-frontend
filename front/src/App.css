@@ -21,7 +21,7 @@
 .App-body {
   display: flex;
   flex: 1;
-  height: 90vh;
+  min-height: 90vh;
   padding: 16px;
   flex-direction: column;
 }

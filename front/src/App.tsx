@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { BsPlusLg } from 'react-icons/bs';
 import logo from './assets/logo.png';
 import './App.css';
 import ApiBoardService from './services/ApiBoardService';
 import Column from './components/Column';
 import { ColumnType } from './domain/Board';
 import { Loader } from './components/Loader';
-import { Card } from './domain/Card';
+import { Card, NewCard } from './domain/Card';
 import { CircleButton } from './components/buttons/CircleButton';
 import { AddNewCardModal } from './components/AddNewCardModal';
 
@@ -36,12 +37,34 @@ function App() {
     setShowAddNewCardModal(false)
   }
 
-  const onSendNewCard = (card: Card) => {
+  const onSendNewCard = (card: NewCard) => {
     if (token) {
       apiBoardService.addNewCard(token, card)
     }
   }
-  console.log(cards)
+
+  const onRemoveCard = (id: string) => {
+    if (token) {
+      apiBoardService.removeCard(token, id).then((response) => {
+        setCards(response.cards)
+      })
+    }
+  }
+
+  const memoizedCardsTodo = useMemo(
+    () => (cards || []).filter((card) => card.lista === ColumnType.TODO),
+    [cards]
+  )
+
+  const memoizedCardsDoing = useMemo(
+    () => (cards || []).filter((card) => card.lista === ColumnType.DOING),
+    [cards]
+  )
+
+  const memoizedCardsDone = useMemo(
+    () => (cards || []).filter((card) => card.lista === ColumnType.DONE),
+    [cards]
+  )
 
   return (
     <div className="App">
@@ -50,15 +73,27 @@ function App() {
         <p className="header-text">
           Quadro Kanban - Lets Code
         </p>
-        <CircleButton label="+" onClick={onShowAddNewCardModal} />
+        <CircleButton label={<BsPlusLg />} onClick={onShowAddNewCardModal} />
       </header>
       <body>
         <div className="App-body">
           {token && cards ? (
             <>
-              <Column type={ColumnType.TODO} />
-              <Column type={ColumnType.DOING} />
-              <Column type={ColumnType.DONE} />
+              <Column
+                type={ColumnType.TODO}
+                cards={memoizedCardsTodo}
+                onRemoveCard={onRemoveCard}
+              />
+              <Column
+                type={ColumnType.DOING}
+                cards={memoizedCardsDoing}
+                onRemoveCard={onRemoveCard}
+              />
+              <Column
+                type={ColumnType.DONE}
+                cards={memoizedCardsDone}
+                onRemoveCard={onRemoveCard}
+              />
             </>
           ) : (
             <Loader />

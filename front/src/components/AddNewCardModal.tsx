@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FocusLock from 'react-focus-lock';
-import { Card } from '../domain/Card';
+import { NewCard } from '../domain/Card';
 import { CircleButton } from './buttons/CircleButton';
 import './AddNewCardModal.css';
 import { Button } from './buttons/Button';
@@ -9,7 +9,7 @@ import { ColumnType } from '../domain/Board';
 interface Props {
   onClose: () => void;
   // eslint-disable-next-line no-unused-vars
-  onSend: (card: Card) => void;
+  onSend: (card: NewCard) => void;
 }
 
 export const AddNewCardModal = ({

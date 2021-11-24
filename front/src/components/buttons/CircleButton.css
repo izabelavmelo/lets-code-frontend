@@ -5,7 +5,7 @@
   width: 44px;
   height: 44px;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 } 
 
 .circle-button:hover:enabled {
@@ -19,5 +19,6 @@
 
 .disabled {
   background-color: #DADBE1;
-  color: rgba(0, 0, 0, 0.87);
+  border-color: #DADBE1;
+  color: #505152 !important;
 }

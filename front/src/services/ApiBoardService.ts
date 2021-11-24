@@ -2,9 +2,10 @@ import {
   AddNewCardResponse,
   BoardService,
   FetchCardsResponse,
-  LoginResponse
+  LoginResponse,
+  RemoveCardResponse
 } from '../domain/ApiBoard'
-import { Card } from '../domain/Card'
+import { NewCard } from '../domain/Card'
 import { api } from './api'
 
 export default class ApiBoardService implements BoardService {
@@ -31,7 +32,7 @@ export default class ApiBoardService implements BoardService {
     }
   }
 
-  async addNewCard(token: string, newCard: Card): Promise<AddNewCardResponse> {
+  async addNewCard(token: string, newCard: NewCard): Promise<AddNewCardResponse> {
     const response = await api.post({
       url: 'cards/',
       token,
@@ -39,6 +40,16 @@ export default class ApiBoardService implements BoardService {
     })
     return {
       card: JSON.parse(response.body)
+    }
+  }
+
+  async removeCard(token: string, id: string): Promise<RemoveCardResponse> {
+    const response = await api.delete({
+      url: `cards/${id}`,
+      token,
+    })
+    return {
+      cards: JSON.parse(response.body)
     }
   }
 }

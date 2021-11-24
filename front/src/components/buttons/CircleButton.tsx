@@ -2,7 +2,7 @@ import React from 'react';
 import './CircleButton.css';
 
 interface Props {
-  label: string;
+  label: string | React.ReactElement;
   onClick: () => void;
   extraClass?: string;
   disabled?: boolean;
