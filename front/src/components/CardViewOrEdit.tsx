@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import {
   AiFillCaretLeft,
   AiFillCaretRight,
@@ -62,7 +64,7 @@ export default function CardViewOrEdit({
   }
 
   const onChangeContent = (event: any) => {
-    setContent(event.target.value)
+    setContent(DOMPurify.sanitize(event.target.value))
   }
 
   const onClear = () => {
@@ -70,6 +72,8 @@ export default function CardViewOrEdit({
     setContent(card.conteudo)
     setIsEditing(false)
   }
+
+  const html = marked.parse(DOMPurify.sanitize(card.conteudo));
 
   return (
     <div className="card-container">
@@ -98,7 +102,7 @@ export default function CardViewOrEdit({
           onChange={onChangeContent}
         />
       ) : (
-        <p className="card-content">{card.conteudo}</p>
+        <div className="card-content" dangerouslySetInnerHTML={{ __html: html }} />
       )}
       <div className="buttons-container-outer">
         <div className="buttons-container">

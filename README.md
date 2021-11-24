@@ -37,3 +37,4 @@ yarn lint
 * Foi adicionado o react-icons
 * Foi adicionado o eslint
 * O código foi dividido entre components (componentes visuais que podem ser reutilizados), services (como se dá a comunicação com backend), domain (tipos que foram usados em todo o projeto), assets (imagens utilizadas) e test (pasta para testes)
+* As telas estão responsivas

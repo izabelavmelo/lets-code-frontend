@@ -54,8 +54,12 @@ function App() {
   const onUpdateCard = (newCard: Card) => {
     if (token) {
       apiBoardService.updateCard(token, newCard).then((response) => {
-        const newCards = cards?.filter((card) => card.id !== response.card.id)
-        setCards([...(newCards || []), response.card])
+        const index = cards?.findIndex((card) => card.id === response.card.id)
+        if (index !== undefined && index !== -1 && index !== null) {
+          const newCards = [...(cards || [])]
+          newCards[index] = response.card
+          setCards([...(newCards || [])])
+        }
       })
     }
   }

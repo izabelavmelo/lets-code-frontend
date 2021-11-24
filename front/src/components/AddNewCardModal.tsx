@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FocusLock from 'react-focus-lock';
+import DOMPurify from 'dompurify';
 import { AiOutlineClose } from 'react-icons/ai';
 import { NewCard } from '../domain/Card';
 import { CircleButton } from './buttons/CircleButton';
@@ -25,7 +26,7 @@ export const AddNewCardModal = ({
   }
 
   const onChangeContent = (event: any) => {
-    setContent(event.target.value)
+    setContent(DOMPurify.sanitize(event.target.value))
   }
 
   const onSubmitCard = () => {
