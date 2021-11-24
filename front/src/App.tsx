@@ -84,37 +84,38 @@ function App() {
         </p>
         <CircleButton label={<BsPlusLg />} onClick={onShowAddNewCardModal} />
       </header>
-      <body>
-        <div className="App-body">
-          {token && cards ? (
-            <>
-              <Column
-                type={ColumnType.TODO}
-                cards={memoizedCardsTodo}
-                onRemoveCard={onRemoveCard}
-                onUpdateCard={onUpdateCard}
-              />
-              <Column
-                type={ColumnType.DOING}
-                cards={memoizedCardsDoing}
-                onRemoveCard={onRemoveCard}
-                onUpdateCard={onUpdateCard}
-              />
-              <Column
-                type={ColumnType.DONE}
-                cards={memoizedCardsDone}
-                onRemoveCard={onRemoveCard}
-                onUpdateCard={onUpdateCard}
-              />
-            </>
-          ) : (
-            <Loader />
-          )}
-          {showAddNewCardModal && (
-            <AddNewCardModal onClose={onHideAddNewCardModal} onSend={onSendNewCard} />
-          )}
-        </div>
-      </body>
+      <div className="App-body">
+        {token && cards ? (
+          <>
+            <Column
+              key={ColumnType.TODO}
+              type={ColumnType.TODO}
+              cards={memoizedCardsTodo}
+              onRemoveCard={onRemoveCard}
+              onUpdateCard={onUpdateCard}
+            />
+            <Column
+              key={ColumnType.DOING}
+              type={ColumnType.DOING}
+              cards={memoizedCardsDoing}
+              onRemoveCard={onRemoveCard}
+              onUpdateCard={onUpdateCard}
+            />
+            <Column
+              key={ColumnType.DONE}
+              type={ColumnType.DONE}
+              cards={memoizedCardsDone}
+              onRemoveCard={onRemoveCard}
+              onUpdateCard={onUpdateCard}
+            />
+          </>
+        ) : (
+          <Loader />
+        )}
+        {showAddNewCardModal && (
+          <AddNewCardModal onClose={onHideAddNewCardModal} onSend={onSendNewCard} />
+        )}
+      </div>
     </div>
   );
 }

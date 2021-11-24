@@ -24,6 +24,7 @@ export default function Column({
       <h2 className="column-title">{type}</h2>
       {cards.map((card) => (
         <CardViewOrEdit
+          key={card.id}
           card={card}
           onRemoveCard={onRemoveCard}
           onUpdateCard={onUpdateCard}

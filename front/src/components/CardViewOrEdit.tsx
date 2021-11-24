@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AiFillCaretLeft,
   AiFillCaretRight,
   AiFillDelete,
-  AiTwotoneEdit
+  AiTwotoneEdit,
+  AiTwotoneSave
 } from 'react-icons/ai';
+import { BiBlock } from 'react-icons/bi';
 import './CardViewOrEdit.css';
 import { Card } from '../domain/Card';
 import { CircleButton } from './buttons/CircleButton';
@@ -23,6 +25,10 @@ export default function CardViewOrEdit({
   onRemoveCard,
   onUpdateCard
 }: Props) {
+  const [isEditing, setIsEditing] = useState(false)
+  const [title, setTitle] = useState(card.titulo)
+  const [content, setContent] = useState(card.conteudo)
+
   const onRemoveCardAction = () => {
     onRemoveCard(card.id)
   }
@@ -42,29 +48,88 @@ export default function CardViewOrEdit({
     }
   }
 
+  const changeToEditingMode = () => {
+    setIsEditing(true)
+  }
+
+  const onUpdate = () => {
+    setIsEditing(false)
+    onUpdateCard({ ...card, titulo: title, conteudo: content })
+  }
+
+  const onChangeTitle = (event: any) => {
+    setTitle(event.target.value)
+  }
+
+  const onChangeContent = (event: any) => {
+    setContent(event.target.value)
+  }
+
+  const onClear = () => {
+    setTitle(card.titulo)
+    setContent(card.conteudo)
+  }
+
   return (
     <div className="card-container">
       <div className="card-header">
-        <h3 className="card-title">{card.titulo}</h3>
-        <CircleButton label={<AiTwotoneEdit />} onClick={() => null} />
+        {isEditing ? (
+          <input
+            type="text"
+            id="new-card-title"
+            name="title"
+            value={title}
+            onChange={onChangeTitle}
+          />
+        ) : (
+          <>
+            <h3 className="card-title">{card.titulo}</h3>
+            <CircleButton label={<AiTwotoneEdit />} onClick={changeToEditingMode} />
+          </>
+        )}
       </div>
-      <p className="card-content">{card.conteudo}</p>
+      {isEditing ? (
+        <textarea
+          id="edit-card-content"
+          name="content"
+          rows={4}
+          value={content}
+          onChange={onChangeContent}
+        />
+      ) : (
+        <p className="card-content">{card.conteudo}</p>
+      )}
       <div className="buttons-container-outer">
         <div className="buttons-container">
-          <CircleButton
-            label={<AiFillCaretLeft />}
-            onClick={moveToLeft}
-            disabled={card.lista === ColumnType.TODO}
-          />
-          <CircleButton
-            label={<AiFillDelete />}
-            onClick={onRemoveCardAction}
-          />
-          <CircleButton
-            label={<AiFillCaretRight />}
-            onClick={moveToRight}
-            disabled={card.lista === ColumnType.DONE}
-          />
+          {isEditing ? (
+            <>
+              <CircleButton
+                label={<BiBlock />}
+                onClick={onClear}
+              />
+              <CircleButton
+                label={<AiTwotoneSave />}
+                onClick={onUpdate}
+              />
+            </>
+          ) : (
+            <>
+              <CircleButton
+                label={<AiFillCaretLeft />}
+                onClick={moveToLeft}
+                disabled={card.lista === ColumnType.TODO}
+              />
+              <CircleButton
+                label={<AiFillDelete />}
+                onClick={onRemoveCardAction}
+              />
+              <CircleButton
+                label={<AiFillCaretRight />}
+                onClick={moveToRight}
+                disabled={card.lista === ColumnType.DONE}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

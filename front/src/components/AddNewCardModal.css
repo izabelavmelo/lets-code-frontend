@@ -63,7 +63,7 @@
 .close-modal:hover {
   background-color: #cfcfcf;
   border-color: #cfcfcf;
-  color: black;
+  color: white;
 }
 
 .close-modal:focus-visible:enabled  {

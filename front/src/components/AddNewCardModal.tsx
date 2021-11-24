@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FocusLock from 'react-focus-lock';
+import { AiOutlineClose } from 'react-icons/ai';
 import { NewCard } from '../domain/Card';
 import { CircleButton } from './buttons/CircleButton';
 import './AddNewCardModal.css';
@@ -42,7 +43,7 @@ export const AddNewCardModal = ({
       >
         <div className="modal__inner">
           <div className="close-container">
-            <CircleButton label="x" onClick={onClose} extraClass="close-modal" />
+            <CircleButton label={<AiOutlineClose />} onClick={onClose} extraClass="close-modal" />
           </div>
           <form className="new-card-form">
             <div className="field-container">
