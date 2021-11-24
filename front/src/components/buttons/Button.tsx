@@ -7,6 +7,7 @@ interface Props {
   extraClass?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  ariaLabel: string;
 }
 
 export const Button = ({
@@ -14,13 +15,15 @@ export const Button = ({
   onClick,
   extraClass,
   disabled,
-  type = 'button'
+  type = 'button',
+  ariaLabel
 }: Props) => (
   <button
     onClick={onClick}
     className={`button ${extraClass} ${disabled ? 'disabled' : ''}`}
     disabled={disabled}
     type={type}
+    aria-label={ariaLabel}
   >
     {label}
   </button>

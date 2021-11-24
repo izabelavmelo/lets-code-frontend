@@ -9,6 +9,19 @@
   padding: 10px 20px 20px 20px;
 }
 
+.column-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.column-title {
+  display: flex;
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
 @media screen and (min-width: 480px) {
   .column-container {
     margin: 0 10px;

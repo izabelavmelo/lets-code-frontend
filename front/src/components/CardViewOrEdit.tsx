@@ -68,6 +68,7 @@ export default function CardViewOrEdit({
   const onClear = () => {
     setTitle(card.titulo)
     setContent(card.conteudo)
+    setIsEditing(false)
   }
 
   return (
@@ -84,7 +85,7 @@ export default function CardViewOrEdit({
         ) : (
           <>
             <h3 className="card-title">{card.titulo}</h3>
-            <CircleButton label={<AiTwotoneEdit />} onClick={changeToEditingMode} />
+            <CircleButton label={<AiTwotoneEdit />} onClick={changeToEditingMode} ariaLabel="Editar card" />
           </>
         )}
       </div>
@@ -92,7 +93,7 @@ export default function CardViewOrEdit({
         <textarea
           id="edit-card-content"
           name="content"
-          rows={4}
+          rows={7}
           value={content}
           onChange={onChangeContent}
         />
@@ -106,10 +107,12 @@ export default function CardViewOrEdit({
               <CircleButton
                 label={<BiBlock />}
                 onClick={onClear}
+                ariaLabel="Cancelar edição"
               />
               <CircleButton
                 label={<AiTwotoneSave />}
                 onClick={onUpdate}
+                ariaLabel="Salvar edição"
               />
             </>
           ) : (
@@ -118,15 +121,18 @@ export default function CardViewOrEdit({
                 label={<AiFillCaretLeft />}
                 onClick={moveToLeft}
                 disabled={card.lista === ColumnType.TODO}
+                ariaLabel="Mover para esquerda"
               />
               <CircleButton
                 label={<AiFillDelete />}
                 onClick={onRemoveCardAction}
+                ariaLabel="Apagar card"
               />
               <CircleButton
                 label={<AiFillCaretRight />}
                 onClick={moveToRight}
                 disabled={card.lista === ColumnType.DONE}
+                ariaLabel="Mover para direita"
               />
             </>
           )}

@@ -82,7 +82,6 @@ function App() {
         <p className="header-text">
           Quadro Kanban - Lets Code
         </p>
-        <CircleButton label={<BsPlusLg />} onClick={onShowAddNewCardModal} />
       </header>
       <div className="App-body">
         {token && cards ? (
@@ -93,6 +92,14 @@ function App() {
               cards={memoizedCardsTodo}
               onRemoveCard={onRemoveCard}
               onUpdateCard={onUpdateCard}
+              extraButton={(
+                <CircleButton
+                  extraClass="close-modal"
+                  label={<BsPlusLg />}
+                  onClick={onShowAddNewCardModal}
+                  ariaLabel="Adicionar novo card"
+                />
+              )}
             />
             <Column
               key={ColumnType.DOING}

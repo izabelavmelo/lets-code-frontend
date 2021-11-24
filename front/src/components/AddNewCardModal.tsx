@@ -43,7 +43,12 @@ export const AddNewCardModal = ({
       >
         <div className="modal__inner">
           <div className="close-container">
-            <CircleButton label={<AiOutlineClose />} onClick={onClose} extraClass="close-modal" />
+            <CircleButton
+              label={<AiOutlineClose />}
+              onClick={onClose}
+              extraClass="close-modal"
+              ariaLabel="Fechar"
+            />
           </div>
           <form className="new-card-form">
             <div className="field-container">
@@ -69,9 +74,10 @@ export const AddNewCardModal = ({
             <div className="button-container">
               <Button
                 onClick={onSubmitCard}
-                label="Enviar"
+                label="Salvar"
                 type="submit"
                 extraClass="submit-form-button"
+                ariaLabel="Salvar"
               />
             </div>
           </form>

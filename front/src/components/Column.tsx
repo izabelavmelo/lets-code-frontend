@@ -11,17 +11,22 @@ interface Props {
   onRemoveCard: (id: string) => void;
   // eslint-disable-next-line no-unused-vars
   onUpdateCard: (newCard: Card) => void;
+  extraButton?: React.ReactElement;
 }
 
 export default function Column({
   type,
   cards,
   onRemoveCard,
-  onUpdateCard
+  onUpdateCard,
+  extraButton
 }: Props) {
   return (
     <div className="column-container">
-      <h2 className="column-title">{type}</h2>
+      <div className="column-header">
+        <h2 className="column-title">{type}</h2>
+        {extraButton}
+      </div>
       {cards.map((card) => (
         <CardViewOrEdit
           key={card.id}
